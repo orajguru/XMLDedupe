@@ -6,7 +6,7 @@ from groq import Groq
 class AIEngine:
     def __init__(self):
         self.openai_key = st.secrets.get("OPENAI_API_KEY", "").strip()
-        self.grok_key = st.secrets.get("GROK_API_KEY", "").strip()
+        self.grok_key = st.secrets.get("groq", "").strip()
 
         self.active_model = None
 
@@ -49,3 +49,4 @@ class AIEngine:
                 return f"⚠️ AI error: {e}"
 
         return "❌ No valid AI model available. Please configure at least one API key."
+
