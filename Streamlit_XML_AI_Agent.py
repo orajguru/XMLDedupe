@@ -11,7 +11,9 @@ try:
 #except Exception:
     #llm = None*/
 except Exception as e:
-    print("ERROR:", e)
+    print("\n==== ERROR creating AIEngine ====")
+    print(repr(e))
+    print("=================================\n")
     raise
 
 st.set_page_config(page_title="XML AI Mapper", page_icon="🤖", layout="wide")
@@ -277,6 +279,7 @@ Cleaned XML:
 
 
 st.caption("Built by IBL Digital Team • AI XML Mapping Assistant 🔧🚀")
+
 
 
 
