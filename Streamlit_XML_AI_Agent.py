@@ -8,8 +8,8 @@ import os
 try:
     from ai_engine import AIEngine
     llm = AIEngine()
-//except Exception:
-    //llm = None*/
+#except Exception:
+    #llm = None*/
 except Exception as e:
     print("ERROR:", e)
     raise
@@ -277,5 +277,6 @@ Cleaned XML:
 
 
 st.caption("Built by IBL Digital Team • AI XML Mapping Assistant 🔧🚀")
+
 
 
