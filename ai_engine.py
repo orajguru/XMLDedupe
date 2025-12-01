@@ -40,7 +40,7 @@ class AIEngine:
         if self.grok_client:
             try:
                 response = self.grok_client.chat.completions.create(
-                    model="grok-2",
+                    model="llama-3.1-8b-instant",
                     messages=[{"role": "user", "content": prompt}]
                 )
                 self.active_model = "Grok-2 (xAI)"
@@ -49,4 +49,5 @@ class AIEngine:
                 return f"⚠️ AI error: {e}"
 
         return "❌ No valid AI model available. Please configure at least one API key."
+
 
