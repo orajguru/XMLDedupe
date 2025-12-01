@@ -5,8 +5,9 @@ from groq import Groq
 
 class AIEngine:
     def __init__(self):
-        self.openai_key = st.secrets.get("OPENAI_API_KEY", "").strip()
+        #self.openai_key = st.secrets.get("OPENAI_API_KEY", "").strip()
         self.grok_key = st.secrets.get("groq", {}).get("key")
+        self.openai_key = st.secrets.get("openai", {}).get("key")
 
         self.active_model = None
 
