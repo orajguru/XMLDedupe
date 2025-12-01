@@ -26,7 +26,7 @@ if llm:
     if llm.active_model:
         status_box.success(f"🧠 Model in use: {llm.active_model}")
     else:
-        status_box.info("ℹ️ AI engine loaded. No model used yet.")
+        status_box.info("ℹ️ AI engine has loaded. No model used yet.")
 else:
     status_box.warning("⚠️ AI model not initialized yet.")
     
