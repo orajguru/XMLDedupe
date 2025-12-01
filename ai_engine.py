@@ -22,18 +22,6 @@ class AIEngine:
         2. Grok (xAI)
         """
 
-        # ---- Fallback → GROK ----
-        if self.grok_client:
-            try:
-                response = self.grok_client.chat.completions.create(
-                    model="llama-3.1-8b-instant",
-                    messages=[{"role": "user", "content": prompt}]
-                )
-                self.active_model = "Grok-2 (xAI)"
-                return response.choices[0].message.content
-            except Exception as e:
-                return f"⚠️ AI error: {e}"
-
 
         # ---- Try OPENAI First ----
         if self.openai_client:
@@ -49,6 +37,22 @@ class AIEngine:
                 if "quota" not in str(e).lower():
                     raise e  # Real error → stop
                 # else fall through to Grok
+                
+                
+        # ---- Fallback → GROK ----
+        if self.grok_client:
+            try:
+                response = self.grok_client.chat.completions.create(
+                    model="llama-3.1-8b-instant",
+                    messages=[{"role": "user", "content": prompt}]
+                )
+                self.active_model = "Grok-2 (xAI)"
+                return response.choices[0].message.content
+            except Exception as e:
+                return f"⚠️ AI error: {e}"
+
+
+        
 
         
         return "❌ No valid AI model available. Please configure at least one API key."
