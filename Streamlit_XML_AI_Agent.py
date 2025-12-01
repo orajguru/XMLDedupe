@@ -8,8 +8,11 @@ import os
 try:
     from ai_engine import AIEngine
     llm = AIEngine()
-except Exception:
-    llm = None
+/*except Exception:
+    llm = None*/
+except Exception as e:
+    print("ERROR:", e)
+    raise
 
 st.set_page_config(page_title="XML AI Mapper", page_icon="🤖", layout="wide")
 st.title("🔍 XML Field Mapper (AI Powered)")
@@ -274,3 +277,4 @@ Cleaned XML:
 
 
 st.caption("Built by IBL Digital Team • AI XML Mapping Assistant 🔧🚀")
+
