@@ -16,16 +16,20 @@ except Exception as e:
     print("=================================\n")
     raise
 
+status_box = st.sidebar.empty()
 st.set_page_config(page_title="XML AI Mapper", page_icon="🤖", layout="wide")
 st.title("🔍 XML Field Mapper (AI Powered)")
 st.caption("Upload → Clean → Compare → Ask AI → Export")
 
 # Show which AI engine is active (if ai_engine exists)
-if llm and llm.active_model:
-    st.sidebar.success(f"🧠 Model in use: {llm.active_model}")
+if llm:
+    if llm.active_model:
+        status_box.success(f"🧠 Model in use: {llm.active_model}")
+    else:
+        status_box.info("ℹ️ AI engine loaded. No model used yet.")
 else:
-    st.sidebar.warning("⚠️ AI model not initialized yet.")
-
+    status_box.warning("⚠️ AI model not initialized yet.")
+    
 # ------------------- Helper functions (correct algorithm) -------------------
 
 def _split_field(text):
@@ -274,6 +278,8 @@ Cleaned XML:
                     ai_text = llm.generate(prompt)
                     st.subheader("AI Output")
                     st.code(ai_text)
+                    status_box.empty()
+                    st.sidebar.success(f"🧠 Model in use: {llm.active_model}")
                 except Exception as e:
                     st.error(f"AI call error: {e}")
 
